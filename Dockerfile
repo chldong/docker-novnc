@@ -1,5 +1,5 @@
 FROM alpine:3.6
-LABEL maintainer=doug.warren@gmail.com
+LABEL maintainer=cuihailiang@gmail.com
 
 ENV HOME=/root \
 	DEBIAN_FRONTEND=noninteractive \
