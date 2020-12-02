@@ -1,0 +1,22 @@
+version: '3'
+
+docker-vnc:  
+  image: saitron/docker-ubuntu-vnc
+  rastart: always
+  networks:
+    - docker-vnc
+  restart: always
+
+docker-novnc:
+  image: saitron/docker-novnc
+  environment:
+    - REMOTE_HOST=docker-vnc
+    - REMOTE_PORT=5901
+  ports:
+    - 8081:8081
+  networks:
+    - docker-vnc
+  restart: always
+
+networks:
+  docker-vnc
