@@ -8,7 +8,7 @@ ENV HOME=/root \
 	LC_ALL=C.UTF-8 \
 	REMOTE_HOST=docker-ubuntu-vnc \
 	REMOTE_PORT=5901
-
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 RUN apk --update --upgrade add git bash supervisor py-pip \
 	&& git clone https://github.com/novnc/noVNC.git /root/noVNC \
 	&& git clone https://github.com/novnc/websockify /root/noVNC/utils/websockify \
@@ -17,6 +17,7 @@ RUN apk --update --upgrade add git bash supervisor py-pip \
 	&& cd /root/noVNC \
 	&& sed -i -- "s/ps -p/ps -o pid | grep/g" /root/noVNC/utils/launch.sh \
 	&& cp /usr/bin/python3 /usr/bin/python \
+	&& cp /root/noVNC/vnc_lite.html /root/noVNC/index.html \
 	&& apk del git
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf

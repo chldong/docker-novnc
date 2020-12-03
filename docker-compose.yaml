@@ -2,6 +2,8 @@ version: '3'
 services:
   docker-ubuntu-vnc:  
     image: saitron/docker-ubuntu-vnc
+    environment:
+      - PASSWD=saitron2020
     networks:
       - docker-vnc
     restart: always
